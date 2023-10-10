@@ -19,7 +19,6 @@ isomorphic: isomorphic.o webview.o
 
 install:
     sudo cp ./isomorphic /usr/local/bin/.
-
 endif
 
 # Mac
@@ -36,7 +35,6 @@ isomorphic: isomorphic.o webview.o
 
 install:
 	cp ./isomorphic /usr/local/bin/.
-
 endif
 
 clean:
