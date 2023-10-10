@@ -9,16 +9,16 @@ UNAME_S := $(shell uname -s)
 #######
 ifeq ($(UNAME_S), Linux)
 webview.o: webview.cc
-    g++ -c webview.cc -std=c++11 -DWEBVIEW_STATIC  `pkg-config --cflags gtk+-3.0 webkit2gtk-4.0` -o webview.o
+	g++ -c webview.cc -std=c++11 -DWEBVIEW_STATIC  `pkg-config --cflags gtk+-3.0 webkit2gtk-4.0` -o webview.o
 
 isomorphic.o: isomorphic.c  
-    gcc -c isomorphic.c -std=c99 
+	gcc -c isomorphic.c -std=c99 
 
 isomorphic: isomorphic.o webview.o
-    g++ isomorphic.o webview.o `pkg-config --libs gtk+-3.0 webkit2gtk-4.0` -o isomorphic 
+	g++ isomorphic.o webview.o `pkg-config --libs gtk+-3.0 webkit2gtk-4.0` -o isomorphic 
 
 install:
-    sudo cp ./isomorphic /usr/local/bin/.
+	sudo cp ./isomorphic /usr/local/bin/.
 endif
 
 # Mac
