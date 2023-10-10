@@ -3,30 +3,28 @@ all: isomorphic
 # optional:
 # sh getlibs.sh
 
-UNAME := $(shell uname)
-
+UNAME_S := $(shell uname -s)
 
 # Linux
-ifeq ($(UNAME), Linux)
+#######
+ifeq ($(UNAME_S), Linux)
 webview.o: webview.cc
-	g++ -c webview.cc -std=c++11 -DWEBVIEW_STATIC $(pkg-config --cflags gtk+-3.0 webkit2gtk-4.0) -o webview.o
+    g++ -c webview.cc -std=c++11 -DWEBVIEW_STATIC  `pkg-config --cflags gtk+-3.0 webkit2gtk-4.0` -o webview.o
 
-isomorphic.o: isomorphic.c	
-	gcc -c isomorphic.c -std=c99 
+isomorphic.o: isomorphic.c  
+    gcc -c isomorphic.c -std=c99 
 
 isomorphic: isomorphic.o webview.o
-	g++ isomorphic.o webview.o $(pkg-config --libs gtk+-3.0 webkit2gtk-4.0) -o isomorphic 
+    g++ isomorphic.o webview.o `pkg-config --libs gtk+-3.0 webkit2gtk-4.0` -o isomorphic 
 
 install:
-	cp ./isomorphic /usr/local/lib/.
+    sudo cp ./isomorphic /usr/local/bin/.
 
-clean:
-	rm *.o isomorphic
 endif
 
-
 # Mac
-ifeq ($(UNAME), Darwin)
+#####
+ifeq ($(UNAME_S), Darwin)
 webview.o: webview.cc
 	g++ -c webview.cc -std=c++11 -DWEBVIEW_STATIC -o webview.o
 
@@ -37,28 +35,17 @@ isomorphic: isomorphic.o webview.o
 	g++ isomorphic.o webview.o -framework WebKit -o isomorphic 
 
 install:
-	cp ./isomorphic /usr/local/lib/.
+	cp ./isomorphic /usr/local/bin/.
+
+endif
 
 clean:
-	rm *.o isomorphic
-endif
+	-rm *.o isomorphic
 
 
 ###################
 # From WebView doc:
 ###################
-
-# Linux
-
-# g++ -c libs/webview/webview.cc -std=c++11 -DWEBVIEW_STATIC $(pkg-config --cflags gtk+-3.0 webkit2gtk-4.0) -o build/webview.o
-# gcc -c basic.c -std=c99 -Ilibs/webview -o build/basic.o
-# g++ build/basic.o build/webview.o $(pkg-config --libs gtk+-3.0 webkit2gtk-4.0) -o build/basic && build/basic
-
-# macOS
-
-# g++ -c libs/webview/webview.cc -std=c++11 -DWEBVIEW_STATIC -o build/webview.o
-# gcc -c basic.c -std=c99 -Ilibs/webview -o build/basic.o
-# g++ build/basic.o build/webview.o -framework WebKit -o build/basic && build/basic
 
 # Windows/MinGW
 
