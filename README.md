@@ -11,3 +11,9 @@ make install
 ```
 
 (on Linux : `sudo make install` (Ubuntu) or `make install` as root (Debian))
+
+# Usage 
+## Example
+```
+isomorphic http://www.google.com
+```
