@@ -12,7 +12,7 @@ webview.o: webview.cc
 	g++ -c webview.cc -std=c++11 -DWEBVIEW_STATIC  `pkg-config --cflags gtk+-3.0 webkit2gtk-4.0` -o webview.o
 
 isomorphic.o: isomorphic.c  
-	gcc -c isomorphic.c -std=c99 
+	gcc -c isomorphic.c -std=gnu99
 
 isomorphic: isomorphic.o webview.o
 	g++ isomorphic.o webview.o `pkg-config --libs gtk+-3.0 webkit2gtk-4.0` -o isomorphic 
