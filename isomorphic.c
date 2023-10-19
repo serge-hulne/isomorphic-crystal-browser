@@ -31,7 +31,6 @@ int main(int argc, char** argv) {
 
     while ((opt = getopt(argc, argv, "p:t:w:h:")) != -1) {
         switch (opt) {
-            
             // Path
             case 'p':
                 pvalue = optarg;
@@ -54,33 +53,40 @@ int main(int argc, char** argv) {
             case 'h':
                 hvalue = optarg;
                 printf("Option -h (Height) with argument %s\n", hvalue);
-                break;
-  
-            case '?':
-                if (optopt == 'c')
-                    fprintf(stderr, "Option -%c requires an argument.\n", optopt);
-                else if (isprint(optopt))
-                    fprintf(stderr, "Unknown option `-%c'.\n", optopt);
-                else
-                    fprintf(stderr, "Unknown option character `\\x%x'.\n", optopt);
-                    printf("Usage ./isomorphic -p path -t title -x position -s size");
-                return 1;
-            default:
-                exit(EXIT_FAILURE);
+                break;  
+            return 1;
         }
     }
 
   // Path
   char * URL = pvalue;
+  if (pvalue == NULL) {
+    URL = "127.0.0.1:3000/root";
+  }
   
   // Title
   char * title = tvalue;
+  if (tvalue == NULL) {
+    title = "Isomorphic";
+  }
 
   // Width
-  int width = atoi(wvalue);
+  int width;
+  if (wvalue == NULL) {
+    width = 800;
+  } else {
+    width = atoi(wvalue);
+  }
   
   // Height
-  int height = atoi(hvalue);
+  int height;
+  if (hvalue == NULL) {
+    height = 600;
+  } else {
+    height = atoi(hvalue);
+  }
+
+  printf("Usage ./isomorphic -p path -t title -x position -w width -h height\n");
 
   webview_t w = webview_create(0, NULL);
   webview_set_title(w, title);
