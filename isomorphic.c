@@ -53,7 +53,8 @@ int main(int argc, char** argv) {
             case 'h':
                 hvalue = optarg;
                 printf("Option -h (Height) with argument %s\n", hvalue);
-                break;  
+                break;
+
             return 1;
         }
     }
@@ -86,7 +87,7 @@ int main(int argc, char** argv) {
     height = atoi(hvalue);
   }
 
-  printf("Usage ./isomorphic -p path -t title -x position -w width -h height\n");
+  printf("Usage ./isomorphic -p path -t title -w width -h height\n");
 
   webview_t w = webview_create(0, NULL);
   webview_set_title(w, title);
