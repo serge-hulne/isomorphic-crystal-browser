@@ -13,7 +13,7 @@ make install
 (on Linux : `sudo make install` (Ubuntu) or `make install` as root (Debian))
 
 # Usage 
-## Examplea
+## Examples
 ```
 1. isomorphic -p http://www.google.com
 2. isomorphic -p http://www.google.com -t Testing -w 400 -h 300 
