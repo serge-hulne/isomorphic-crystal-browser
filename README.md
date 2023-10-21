@@ -15,7 +15,7 @@ make install
 - libgtk : gtk+-3.0
 (See your package manager for instructions ("apt-get" or "yum" or "pacman", or other, depending upon your linux distribution))
 
-# Dependencies on MAc
+# Dependencies on Mac
 brew install gtk+3
 
 (on Linux : `sudo make install` (Ubuntu) or `make install` as root (Debian))
